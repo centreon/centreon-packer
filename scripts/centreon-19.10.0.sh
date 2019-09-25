@@ -122,9 +122,6 @@ function installWidgets() {
 
 function initialConfiguration() {
 
-    systemctl enable centengine
-    systemctl start centengine
-
     # Add server and set snmp configuration
     centreon -u admin -p ${CENTREON_ADMIN_PASSWD} -o HG -a add -v "Linux;Linux servers"
     centreon -u admin -p ${CENTREON_ADMIN_PASSWD} -o HOST -a ADD -v "centreon-central;Centreon Central;127.0.0.1;App-Monitoring-Centreon-Central-custom|App-Monitoring-Centreon-Database-custom;central;Linux"
@@ -146,7 +143,7 @@ function initialConfiguration() {
     done
 
     # Apply configuration
-    centreon -u admin -p ${CENTREON_ADMIN_PASSWD} -a APPLYCFG -v 1
+    centreon -u admin -p ${CENTREON_ADMIN_PASSWD} -a CFGMOVE -v 1
 }
 
 yum install -y centos-release-scl wget curl
