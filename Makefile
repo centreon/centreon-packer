@@ -9,16 +9,16 @@ help:
 	@echo
 
 last:    ## Build Latest Centreon (19.10-centos)
-	@packer build -var-file vars/centreon-1910.json centreon-local.json
+	@packer build -parallel=false -var-file vars/centreon-1910.json centreon-local.json
 
 18.10:     ## Build Centreon 18.10
-	@packer build -var-file vars/centreon-1810.json centreon-local.json
+	@packer build -parallel=false -var-file vars/centreon-1810.json centreon-local.json
 
 19.04:     ## Build Centreon 19.04
-	@packer build -var-file vars/centreon-1904.json centreon-local.json
+	@packer build -parallel=false -var-file vars/centreon-1904.json centreon-local.json
 
 19.04-centos:     ## Build Centreon 19.04 over Centos ISO
-	@packer build -var-file vars/centos-centreon-1904.json centreon-local.json
+	@packer build -parallel=false -var-file vars/centos-centreon-1904.json centreon-local.json
 
 19.10:     ## Build Centreon OSS 19.10 over Centos ISO
 	@packer build -parallel=false -var-file vars/centreon-1910.json centreon-local.json
