@@ -7,7 +7,7 @@ if [[ $EUID -eq 0 ]]; then
     CENTREON_RELEASE=$(rpm -qa | grep centreon-release | cut -d '-' -f3)
     CENTOS_RELEASE=$(cat /etc/centos-release)
 
-    echo "*** Centreon ${CENTREON_RELEASE} ***"
+    banner "Centreon ${CENTREON_RELEASE}"
 
 echo -e "Based on $CENTOS_RELEASE
 

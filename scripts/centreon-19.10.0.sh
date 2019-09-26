@@ -186,4 +186,8 @@ systemctl enable centreon
 mkdir -p /srv/centreon
 mv -v /tmp/scripts/generateUUID.php /srv/centreon/generateUUID.php
 mv -v /tmp/scripts/generateAppKey.php /srv/centreon/generateAppKey.php
+# install banner binary from Epel, used by centreon profile.d
+yum install -y epel-release \
+  && yum install -y banner \
+  && yum remove -y epel-release
 mv -v /tmp/scripts/centreon-profile.sh /etc/profile.d/centreon.sh
