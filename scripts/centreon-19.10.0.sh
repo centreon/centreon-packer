@@ -75,7 +75,7 @@ function installPlugins() {
             )
             CURL_OUTPUT=$(${CURL_CMD} -X POST \
                 -H "Content-Type: application/json" \
-                -H "centreon-auth-token: ${API_TOKEN}"\
+                -H "$(printf 'centreon-auth-token: %q' "$API_TOKEN")" \
                 -d "{\"pluginpack\":[${JSON_PLUGIN}]}" \
                 "${CENTREON_HOST}/centreon/api/index.php?object=centreon_pp_manager_pluginpack&action=installupdate"
             )
@@ -115,7 +115,7 @@ function installWidgets() {
         # Configure widget in Centreon
         ${CURL_CMD} -X POST \
             -H "Content-Type: application/json" \
-            -H "centreon-auth-token: ${API_TOKEN}"\
+            -H "$(printf 'centreon-auth-token: %q' "$API_TOKEN")" \
             "${CENTREON_HOST}/centreon/api/index.php?object=centreon_module&action=install&id=${WIDGET}&type=widget"
     done
 }
