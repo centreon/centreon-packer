@@ -171,13 +171,6 @@ installWidgets
 # Apply initial configuration from owner server
 initialConfiguration
 
-# Set profile script
-mkdir -p /srv/centreon
-mv -v /tmp/scripts/generateUUID.php /srv/centreon/generateUUID.php
-mv -v /tmp/scripts/generateAppKey.php /srv/centreon/generateAppKey.php
-mv -v /tmp/scripts/centreon-profile.sh /etc/profile.d/centreon.sh
-chmod +x /etc/profile.d/centreon.sh
-
 # Enable all others services
 systemctl enable httpd24-httpd
 systemctl enable snmpd
@@ -188,3 +181,9 @@ systemctl enable centreontrapd
 systemctl enable cbd
 systemctl enable centengine
 systemctl enable centreon
+
+# Set profile script
+mkdir -p /srv/centreon
+mv -v /tmp/scripts/generateUUID.php /srv/centreon/generateUUID.php
+mv -v /tmp/scripts/generateAppKey.php /srv/centreon/generateAppKey.php
+mv -v /tmp/scripts/centreon-profile.sh /etc/profile.d/centreon.sh
