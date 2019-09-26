@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# check if shutdown is running
+if ! [ "$(ps -ax | grep " shutdown" | grep -v grep)" ]; then
+
 if [[ $EUID -eq 0 ]]; then
     CENTREON_RELEASE=$(rpm -qa | grep centreon-release | cut -d '-' -f3)
     CENTOS_RELEASE=$(cat /etc/centos-release)
@@ -45,4 +48,5 @@ To delete this message, delete the /etc/profile.d/centreon.sh file".
         /usr/bin/systemctl restart centreontrapd
         /usr/bin/systemctl restart cbd
     fi
+fi
 fi
