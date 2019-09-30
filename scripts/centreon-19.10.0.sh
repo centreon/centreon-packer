@@ -1,5 +1,7 @@
 #!/bin/sh
 
+DEBUG=1
+
 MYSQL_HOST="localhost"
 MYSQL_PORT="3306"
 MYSQL_USER="centreon"
@@ -13,7 +15,7 @@ function InstallDbCentreon() {
 
     CENTREON_HOST="http://localhost"
     COOKIE_FILE="/tmp/install.cookie"
-    CURL_CMD="curl -q -b ${COOKIE_FILE}"
+    CURL_CMD="curl -q -o /dev/null -b ${COOKIE_FILE}"
 
     curl -q -c ${COOKIE_FILE} ${CENTREON_HOST}/centreon/install/install.php
     ${CURL_CMD} "${CENTREON_HOST}/centreon/install/steps/step.php?action=stepContent"
@@ -79,6 +81,9 @@ function installPlugins() {
                 -d "{\"pluginpack\":[${JSON_PLUGIN}]}" \
                 "${CENTREON_HOST}/centreon/api/index.php?object=centreon_pp_manager_pluginpack&action=installupdate"
             )
+            if [ $DEBUG -eq 1 ]; then
+                echo "Curl ouput: ${CURL_OUTPUT}"
+            fi
             if ! [ $(echo $CURL_OUTPUT | grep "Forbidden") ]; then
                 STATUS=1
             fi
@@ -103,20 +108,30 @@ function installWidgets() {
     )
 
     CENTREON_HOST="http://localhost"
-    CURL_CMD="curl -q -o /dev/null"
-    API_TOKEN=$(curl -q -d "username=admin&password=${CENTREON_ADMIN_PASSWD}" \
-        "${CENTREON_HOST}/centreon/api/index.php?action=authenticate" \
-        | cut -f2 -d":" | sed -e "s/\"//g" -e "s/}//"
-    )
+    CURL_CMD="curl "
 
     for WIDGET in "${WIDGETS[@]}"; do
         # Install package
         yum install -y centreon-widget-${WIDGET}
-        # Configure widget in Centreon
-        ${CURL_CMD} -X POST \
-            -H "Content-Type: application/json" \
-            -H "$(printf 'centreon-auth-token: %q' "$API_TOKEN")" \
-            "${CENTREON_HOST}/centreon/api/index.php?object=centreon_module&action=install&id=${WIDGET}&type=widget"
+        STATUS=0
+        while [ $STATUS -eq 0 ]; do
+            API_TOKEN=$(curl -q -d "username=admin&password=${CENTREON_ADMIN_PASSWD}" \
+                "${CENTREON_HOST}/centreon/api/index.php?action=authenticate" \
+                | cut -f2 -d":" | sed -e "s/\"//g" -e "s/}//"
+            )
+            # Configure widget in Centreon
+            CURL_OUTPUT=$(${CURL_CMD} -X POST \
+                -H "Content-Type: application/json" \
+                -H "$(printf 'centreon-auth-token: %q' "$API_TOKEN")" \
+                "${CENTREON_HOST}/centreon/api/index.php?object=centreon_module&action=install&id=${WIDGET}&type=widget"
+            )
+            if [ $DEBUG -eq 1 ]; then
+                echo "Curl ouput: ${CURL_OUTPUT}"
+            fi
+            if ! [ $(echo $CURL_OUTPUT | grep "Forbidden") ]; then
+                STATUS=1
+            fi
+        done
     done
 }
 
