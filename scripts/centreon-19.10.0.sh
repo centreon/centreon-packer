@@ -51,10 +51,10 @@ function installPlugins() {
 
     # Install JQ tool (https://stedolan.github.io/jq/)
     # to help manage json output in shell
-    wget -O /usr/sbin/jq https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64
+    curl -q -o /usr/sbin/jq -L https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64
     chmod +x /usr/sbin/jq
 
-    SLUGS=$(wget -O - -q 'https://api.imp.centreon.com/api/pluginpack/pluginpack?sort=catalog_level&by=asc&page[number]=1&page[size]=20')
+    SLUGS=$(curl -q -L -g 'https://api.imp.centreon.com/api/pluginpack/pluginpack?sort=catalog_level&by=asc&page[number]=1&page[size]=20')
 
     PLUGINS=(
       base-generic
