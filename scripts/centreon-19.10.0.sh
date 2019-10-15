@@ -161,9 +161,8 @@ function initialConfiguration() {
     centreon -u admin -p ${CENTREON_ADMIN_PASSWD} -a CFGMOVE -v 1
 }
 
-yum install -y centos-release-scl wget curl
+yum install -y centos-release-scl wget curl ntp
 yum install -y yum-utils http://yum.centreon.com/standard/19.10/el7/stable/noarch/RPMS/centreon-release-19.10-1.el7.centos.noarch.rpm
-yum-config-manager --enable 'centreon-testing*'
 yum install -y centreon
 
 echo "date.timezone = Europe/Paris" > /etc/opt/rh/rh-php72/php.d/php-timezone.ini
@@ -190,6 +189,7 @@ initialConfiguration
 systemctl enable httpd24-httpd
 systemctl enable snmpd
 systemctl enable snmptrapd
+systemctl enable ntpd
 systemctl enable rh-php72-php-fpm
 systemctl enable centcore
 systemctl enable centreontrapd
