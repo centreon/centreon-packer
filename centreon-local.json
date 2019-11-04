@@ -71,7 +71,7 @@
       "accelerator": "kvm",
       "qemuargs": [
         [ "-m", "1024M" ],
-        [ "-display", "gtk" ]
+        [ "-display", "sdl" ]
       ],
       "iso_url": "{{user `iso_url`}}",
       "iso_checksum": "{{user `iso_checksum`}}",
