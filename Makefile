@@ -8,7 +8,7 @@ help:
 	@grep -E '^[a-zA-Z_0-9.-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "  \033[36m%-30s\033[0m %s\n", $$1, $$2}'
 	@echo
 
-last: 20.04 ## Build last version avaiable (20.04)
+last: 20.04 ## Build last version available (20.04)
 .PHONY: last
 
 18.10:     ## Build Centreon 18.10
