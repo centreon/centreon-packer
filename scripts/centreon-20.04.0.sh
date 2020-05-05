@@ -176,6 +176,7 @@ installWidgets
 initialConfiguration
 
 # Enable all others services
+systemctl enable mysql
 systemctl enable httpd24-httpd
 systemctl enable snmpd
 systemctl enable snmptrapd
