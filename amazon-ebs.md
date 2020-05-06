@@ -32,7 +32,7 @@ Customize some data from the Amazon environment by editing the `centreon-local.j
     }
 ```
 
-To obtain a list of Centos images available for the region you want to use in creating your image, using Amazon's cli, use the following command (change region for you choice)
+To obtain a list of Centos images (for use in `source_ami` option) available for the region you want to use in creating your image, using Amazon's cli, use the following command (change region for you choice)
 
 ```
 aws --region us-east-1 ec2 describe-images --owners aws-marketplace --filters Name=product-code,Values=aw0evgkw8e5c1q413zgy5pjce
