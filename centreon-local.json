@@ -8,7 +8,6 @@
     "artifact_description": "",
     "artifact_version": "",
     "disk_size": "63488",
-    "aws_region": "us-east-2",
     "aws_access_key": "XXXXXXXXXXXXXXXXXXX",
     "aws_secret_key": "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
   },
@@ -98,7 +97,7 @@
       "access_key": "{{user `aws_access_key`}}",
       "secret_key": "{{user `aws_secret_key`}}",
       "profile" : "default",
-      "region" : "{{user `aws_region`}}",
+      "region" : "us-east-2",
       "instance_type" : "t2.micro",
       "source_ami" : "ami-e0eac385",
       "ssh_username" : "centos",
@@ -109,7 +108,7 @@
           "Tool" : "Packer",
           "Author" : "lgcosta"
       }
-  }
+    }
   ],    
   
   "provisioners": [
