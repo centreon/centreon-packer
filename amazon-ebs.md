@@ -40,6 +40,8 @@ aws --region us-east-1 ec2 describe-images --owners aws-marketplace --filters Na
 
 always give preference to the most current images
 
+More info: https://wiki.centos.org/Cloud/AWS
+
 
 ### For build image
 
