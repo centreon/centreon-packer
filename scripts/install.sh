@@ -26,15 +26,15 @@ ln -sf /usr/share/zoneinfo/Europe/Paris /etc/localtime
 yum update -y
 #yum install -y virt-what
 
-#if [[ "$(virt-what | head -1)" =~ ^(kvm|virtualbox)$ ]]; then
+if [[ "$(virt-what | head -1)" =~ ^(kvm|virtualbox)$ ]]; then
 
     # Disable selinux
     #setenforce 0
     #sed -i 's/enforcing/disabled/' /etc/selinux/config
 
     ## disable firewall and iptables
-    #systemctl disable firewalld.service
+    systemctl disable firewalld.service
 
     ## disable kdump
-    #systemctl disable kdump.service
-#fi
+    systemctl disable kdump.service
+fi
