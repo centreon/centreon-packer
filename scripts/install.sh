@@ -10,12 +10,6 @@ echo "Configuring system ..."
 ## timezone
 ln -sf /usr/share/zoneinfo/Europe/Paris /etc/localtime
 
-## disable firewall and iptables
-#sudo systemctl disable firewalld.service
-
-## disable kdump
-#sudo systemctl disable kdump.service
-
 ##############################################################
 # Running ovfenv-installer for next reboot
 ##############################################################
@@ -27,10 +21,20 @@ ln -sf /usr/share/zoneinfo/Europe/Paris /etc/localtime
 
 #sudo chmod +x /etc/rc.d/rc.local
 
-# Disable selinux
-setenforce 0
-sed -i 's/enforcing/disabled/' /etc/selinux/config
-
 # Performe a update in system
 
 yum update -y
+#yum install -y virt-what
+
+#if [[ "$(virt-what | head -1)" =~ ^(kvm|virtualbox)$ ]]; then
+
+    # Disable selinux
+    #setenforce 0
+    #sed -i 's/enforcing/disabled/' /etc/selinux/config
+
+    ## disable firewall and iptables
+    #systemctl disable firewalld.service
+
+    ## disable kdump
+    #systemctl disable kdump.service
+#fi
