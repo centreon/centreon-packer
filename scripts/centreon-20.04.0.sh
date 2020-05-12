@@ -151,11 +151,9 @@ function initialConfiguration() {
     centreon -u admin -p ${CENTREON_ADMIN_PASSWD} -a CFGMOVE -v 1
 }
 
-yum install -y centos-release-scl wget curl ntp yum-utils openssh-server
-yum install -y http://yum.centreon.com/standard/20.04/el7/stable/noarch/RPMS/centreon-release-20.04-1.el7.centos.noarch.rpm
-yum install -y centreon
+yum install -y wget curl ntp openssh-server
+curl -L https://raw.githubusercontent.com/centreon/centreon/master/unattended.sh | sh
 
-echo "date.timezone = Europe/Paris" > /etc/opt/rh/rh-php72/php.d/php-timezone.ini
 systemctl daemon-reload
 systemctl restart mysql
 mysqladmin -u root password $MYSQL_ROOT_PASSWORD # Set password to root mysql
