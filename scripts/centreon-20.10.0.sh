@@ -152,7 +152,7 @@ function initialConfiguration() {
 }
 
 yum install -y wget curl ntp openssh-server
-curl -L https://raw.githubusercontent.com/centreon/centreon/20.04.4/unattended.sh | sh
+curl -L https://raw.githubusercontent.com/centreon/centreon/master/unattended.sh | sh
 
 systemctl daemon-reload
 systemctl restart mysql
@@ -168,7 +168,7 @@ systemctl restart cbd
 installPlugins
 
 # Install widgets and configure
-installWidgets
+#installWidgets
 
 # Apply initial configuration from owner server
 initialConfiguration

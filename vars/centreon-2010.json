@@ -1,0 +1,8 @@
+{
+  "iso_url": "http://centos.mirrors.ovh.net/ftp.centos.org/7.8.2003/isos/x86_64/CentOS-7-x86_64-Minimal-2003.iso",
+  "iso_checksum": "659691c28a0e672558b003d223f83938f254b39875ee7559d1a4a14c79173193",
+  "artifact_description": "Centreon 20.10.0 (CentOS-7-x86_64-Minimal-2003.iso), 62GB /, nothing extra",
+  "artifact_version": "20.10.0",
+  "centreon_release": "20.10",
+  "redhat_release": "7.8"
+}
