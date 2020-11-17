@@ -157,6 +157,8 @@ dnf config-manager --set-enabled PowerTools
 dnf install -y http://yum.centreon.com/standard/20.10/el8/stable/noarch/RPMS/centreon-release-20.10-2.el8.noarch.rpm
 #curl -L https://raw.githubusercontent.com/centreon/centreon/master/unattended.sh | sh
 
+dnf install -y centreon centreon-database
+
 systemctl daemon-reload
 systemctl restart mariadb
 mysqladmin -u root password $MYSQL_ROOT_PASSWORD # Set password to root mysql
@@ -164,7 +166,7 @@ systemctl restart php-fpm
 systemctl restart httpd
 sleep 5 # waiting start httpd process
 InstallDbCentreon # Configure database
-su - centreon -c "/opt/rh/rh-php72/root/bin/php /usr/share/centreon/cron/centreon-partitioning.php"
+su - centreon -c "/bin/php /usr/share/centreon/cron/centreon-partitioning.php"
 systemctl restart cbd
 
 # Install Plugins
