@@ -34,12 +34,12 @@
       "guest_os_type": "RedHat_64",
       "hard_drive_interface": "scsi",
       "disk_size": "793600",
-      "floppy_files": [
-        "./boot/ks-{{user `artifact_version`}}.cfg"
-      ],
+      "http_directory": "boot",
       "headless": false,
       "guest_additions_mode": "disable",
-      "boot_command": "<tab> inst.ks=hd:fd0:/ks-{{user `artifact_version`}}.cfg <enter><wait>",
+      "boot_command": [
+        "<tab><bs><bs><bs><bs><bs>text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks-{{user `artifact_version`}}.cfg<enter><wait>"
+      ],
       "boot_wait": "5s",
       "ssh_username": "root",
       "ssh_password": "centreon",
@@ -55,10 +55,10 @@
       "iso_checksum_type": "{{user `iso_checksum_type`}}",
       "guest_os_type": "RedHat_64",
       "disk_size": "793600",
-      "floppy_files": [
-        "./boot/ks-{{user `artifact_version`}}.cfg"
+      "http_directory": "boot",
+      "boot_command": [
+        "<tab><bs><bs><bs><bs><bs>text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks-{{user `artifact_version`}}.cfg<enter><wait>"
       ],
-      "boot_command": "<tab> inst.ks=hd:fd0:/ks-{{user `artifact_version`}}.cfg <enter><wait>",
       "boot_wait": "5s",
       "ssh_username": "root",
       "ssh_password": "centreon",
@@ -81,10 +81,10 @@
       "net_device": "virtio-net",
       "disk_interface": "virtio-scsi",
       "disk_size": "793600",
-      "floppy_files": [
-        "./boot/ks-{{user `artifact_version`}}.cfg"
+      "http_directory": "boot",
+      "boot_command": [
+        "<tab><bs><bs><bs><bs><bs>text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks-{{user `artifact_version`}}.cfg<enter><wait>"
       ],
-      "boot_command": "<tab> inst.ks=hd:fd0:/ks-{{user `artifact_version`}}.cfg <enter><wait>",
       "boot_wait": "5s",
       "ssh_username": "root",
       "ssh_password": "centreon",
