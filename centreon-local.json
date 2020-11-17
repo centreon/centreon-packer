@@ -32,7 +32,6 @@
       "iso_checksum": "{{user `iso_checksum`}}",
       "iso_checksum_type": "{{user `iso_checksum_type`}}",
       "guest_os_type": "RedHat_64",
-      "hard_drive_interface": "scsi",
       "disk_size": "793600",
       "http_directory": "boot",
       "headless": false,
