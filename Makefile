@@ -28,3 +28,6 @@ last: 20.10 ## Build last version available (20.10)
 
 20.10:     ## Build Centreon OSS 20.10 over Centos ISO
 	@packer build -parallel=false -var-file vars/centreon-2010.json centreon-local.json
+
+20.10-centos8:     ## Build Centreon OSS 20.10 over Centos 8 ISO
+	@packer build -parallel=false -var-file vars/centreon-2010-centos8.json centreon-local.json
