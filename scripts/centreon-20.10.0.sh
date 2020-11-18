@@ -151,8 +151,7 @@ function initialConfiguration() {
     centreon -u admin -p ${CENTREON_ADMIN_PASSWD} -a CFGMOVE -v 1
 }
 
-yum install -y wget curl ntp openssh-server
-curl -L https://raw.githubusercontent.com/centreon/centreon/master/unattended.sh | sh
+curl -L https://raw.githubusercontent.com/centreon/centreon/20.10.0/unattended.sh | sh
 
 systemctl daemon-reload
 systemctl restart mysql
