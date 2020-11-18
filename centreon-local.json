@@ -32,14 +32,13 @@
       "iso_checksum": "{{user `iso_checksum`}}",
       "iso_checksum_type": "{{user `iso_checksum_type`}}",
       "guest_os_type": "RedHat_64",
-      "hard_drive_interface": "scsi",
       "disk_size": "793600",
-      "floppy_files": [
-        "./boot/ks-{{user `artifact_version`}}.cfg"
-      ],
+      "http_directory": "boot",
       "headless": false,
       "guest_additions_mode": "disable",
-      "boot_command": "<tab> inst.ks=hd:fd0:/ks-{{user `artifact_version`}}.cfg <enter><wait>",
+      "boot_command": [
+        "<tab><bs><bs><bs><bs><bs>text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks-{{user `artifact_version`}}.cfg<enter><wait>"
+      ],
       "boot_wait": "5s",
       "ssh_username": "root",
       "ssh_password": "centreon",
@@ -55,10 +54,10 @@
       "iso_checksum_type": "{{user `iso_checksum_type`}}",
       "guest_os_type": "RedHat_64",
       "disk_size": "793600",
-      "floppy_files": [
-        "./boot/ks-{{user `artifact_version`}}.cfg"
+      "http_directory": "boot",
+      "boot_command": [
+        "<tab><bs><bs><bs><bs><bs>text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks-{{user `artifact_version`}}.cfg<enter><wait>"
       ],
-      "boot_command": "<tab> inst.ks=hd:fd0:/ks-{{user `artifact_version`}}.cfg <enter><wait>",
       "boot_wait": "5s",
       "ssh_username": "root",
       "ssh_password": "centreon",
@@ -81,10 +80,10 @@
       "net_device": "virtio-net",
       "disk_interface": "virtio-scsi",
       "disk_size": "793600",
-      "floppy_files": [
-        "./boot/ks-{{user `artifact_version`}}.cfg"
+      "http_directory": "boot",
+      "boot_command": [
+        "<tab><bs><bs><bs><bs><bs>text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks-{{user `artifact_version`}}.cfg<enter><wait>"
       ],
-      "boot_command": "<tab> inst.ks=hd:fd0:/ks-{{user `artifact_version`}}.cfg <enter><wait>",
       "boot_wait": "5s",
       "ssh_username": "root",
       "ssh_password": "centreon",
@@ -101,8 +100,8 @@
       "instance_type" : "t2.micro",
       "source_ami" : "ami-e0eac385",
       "ssh_username" : "centos",
-      "ami_name" : "Centreon 20.04 Build 0.0.1",
-      "ami_description" : "Centreon 20.04 OSS",
+      "ami_name" : "Centreon 20.10 Build 0.0.1",
+      "ami_description" : "Centreon 20.10 OSS",
       "run_tags" : {
           "Name" : "packer-builder-centreon",
           "Tool" : "Packer",
