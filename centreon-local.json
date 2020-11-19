@@ -120,7 +120,7 @@
       "type": "shell",
       "inline": [
           "sudo bash -ex /tmp/scripts/install.sh",
-          "sudo bash -ex /tmp/scripts/centreon-{{user `artifact_version`}}.sh",
+
           "sudo bash -ex /tmp/scripts/cleanup.sh",
           "sudo rm -rf /tmp/scripts"
       ]
