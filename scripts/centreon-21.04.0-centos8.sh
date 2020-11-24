@@ -117,6 +117,15 @@ function initialConfiguration() {
     centreon -u admin -p ${CENTREON_ADMIN_PASSWD} -a CFGMOVE -v 1
 }
 
+# Apply selinux rules
+/usr/bin/dnf install -y \
+    https://gitlab.labexposed.com/centreon-lab/centreon-selinux/-/raw/centos8/centreon-common-selinux-0.0.3-1.x86_64.rpm \
+    https://gitlab.labexposed.com/centreon-lab/centreon-selinux/-/raw/centos8/centreon-web-selinux-0.0.6-1.x86_64.rpm \
+    https://gitlab.labexposed.com/centreon-lab/centreon-selinux/-/raw/centos8/centreon-broker-selinux-0.0.4-1.x86_64.rpm \
+    https://gitlab.labexposed.com/centreon-lab/centreon-selinux/-/raw/centos8/centreon-engine-selinux-0.0.7-1.x86_64.rpm \
+    https://gitlab.labexposed.com/centreon-lab/centreon-selinux/-/raw/centos8/centreon-gorgoned-selinux-0.0.1-1.x86_64.rpm \
+    https://gitlab.labexposed.com/centreon-lab/centreon-selinux/-/raw/centos8/centreon-plugins-selinux-0.0.4-1.x86_64.rpm
+
 /usr/bin/dnf config-manager --set-enabled PowerTools
 /usr/bin/dnf install -y http://yum.centreon.com/standard/21.04/el8/stable/noarch/RPMS/centreon-release-21.04-2.el8.noarch.rpm
 /usr/bin/dnf install -y centreon centreon-database
